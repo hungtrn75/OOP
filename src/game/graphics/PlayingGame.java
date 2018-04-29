@@ -34,7 +34,7 @@ public class PlayingGame extends GameState implements ActionListener{
         dynamometer = new Dynamometer();
         dynamometer.setLocation(975, 30);
         add(dynamometer);
-        //
+        //nón
         wheel = new Wheel();
         wheel.setLocation(700,30);
         wheel.setPlayingGameState(this);
@@ -44,20 +44,8 @@ public class PlayingGame extends GameState implements ActionListener{
     }
     
     public void checkWheel() {
-        if (resultOfWheel == 1) {           // may mắn
-            
-        } else if (resultOfWheel == 2) {    // chia đôi
-           
-        } else if (resultOfWheel == 3) {    // gấp đôi
-            
-        } else if (resultOfWheel == 4) {    // mất lượt
-            
+        //may man = 1, chia doi = 2, gap doi = 3, mat luot = 4, them luot = 5; 
             wheel.enableWheel();
-        } else if (resultOfWheel == 5) {    // thêm lượt
-            
-        } else {                            // ô điểm
-            
-        }
     }
     public void continueWheel() {
         wheel.enableWheel();

@@ -71,7 +71,7 @@ public class Wheel extends JPanel {
     }
 
     public int scoreCalculate() {
-        int index = (int) ((currentAngle / (4 * DELTA)) % 24);   //calculate index of value in value map
+        int index = (int) (((currentAngle + DELTA/2 )/ (4 * DELTA)) % 24);   //calculate index of value in value map
         int score = valueMap[index];
         JOptionPane.showMessageDialog(null,"Diem ban dat duoc la "+score);
         return score;
@@ -100,7 +100,7 @@ public class Wheel extends JPanel {
             int n = (int) (angle / DELTA);
 
             //set default sleep time = 10 milisec
-            long sleepTime = 10;
+            long sleepTime = 5;
             int j = 0;
 
             for (int i = 0; i < n; i++) {
@@ -113,7 +113,7 @@ public class Wheel extends JPanel {
                         Thread.sleep(sleepTime);
                     } else {
                         j += 1;
-                        if (j == 7) {
+                        if (j == 5) {
                             j = 0;
                             sleepTime += 1;
                         }
