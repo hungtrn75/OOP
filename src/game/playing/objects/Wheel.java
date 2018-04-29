@@ -41,7 +41,7 @@ public class Wheel extends JPanel {
     private double force;
 
     static final double DELTA = Math.PI / 48;
-    static final double MAXFORCE = 9;
+    static final double MAXFORCE = 10;
 
     //may man = 1, chia doi = 2, gap doi = 3, mat luot = 4, them luot = 5; 
     private static final int valueMap[] = {900, 200, 1, 500, 100, 2, 200, 400, 100,
@@ -50,13 +50,15 @@ public class Wheel extends JPanel {
 
     public void forceCalculate(long x1, long x2, long y1, long y2, long t1, long t2) {
         //f = m*a = m * s/t^2           assume that m = 1
-        force = 1000 * Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) / ((t2 - t1) * (t2 - t1));
-
+        force = 500 * Math.sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) / ((t2 - t1) * (t2 - t1));
+        
         //set max value
         if (force > MAXFORCE) {
             force = MAXFORCE;
         }
-        playingGameState.updateDynamometer(force * 100);
+        System.out.println("force");
+        System.out.println(force);
+        playingGameState.updateDynamometer(force * 50);
     }
 
     //get force (pass force value to Dynamometer)
@@ -67,11 +69,16 @@ public class Wheel extends JPanel {
     //assume angle ~ force
     public double angleCalculate(double force) {
         double angle = force * 5;
+        if (angle>45) angle=45;
+        System.out.println("angle");
+        System.out.println(angle);
         return angle;
     }
 
     public int scoreCalculate() {
-        int index = (int) (((currentAngle + DELTA/2 )/ (4 * DELTA)) % 24);   //calculate index of value in value map
+        int index = (int) (((currentAngle )/ (4 * DELTA)) % 24);   //calculate index of value in value map
+        System.out.println("index");
+        System.out.println(index);
         int score = valueMap[index];
         JOptionPane.showMessageDialog(null,"Diem ban dat duoc la "+score);
         return score;
@@ -113,7 +120,7 @@ public class Wheel extends JPanel {
                         Thread.sleep(sleepTime);
                     } else {
                         j += 1;
-                        if (j == 5) {
+                        if (j == 3) {
                             j = 0;
                             sleepTime += 1;
                         }
@@ -123,6 +130,8 @@ public class Wheel extends JPanel {
                     Logger.getLogger(Wheel.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            System.out.println("current");
+            System.out.println(currentAngle);
             int score = scoreCalculate();
             playingGameState.setResultOfWheel(score);
             playingGameState.checkWheel();
@@ -137,7 +146,7 @@ public class Wheel extends JPanel {
         
         // ve cai kim
         Image cursorImage = new ImageIcon("images/cursor.png").getImage();
-        g2d.drawImage(cursorImage, getWidth() / 2 -10, 0, this);
+        g2d.drawImage(cursorImage, getWidth() / 2 , 0, this);
         
         // ve cai non
         Image wheelImage = new ImageIcon("images/hat.png").getImage();     //get Wheel image

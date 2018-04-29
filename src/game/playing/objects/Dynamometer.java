@@ -37,6 +37,8 @@ public class Dynamometer extends JPanel implements Runnable {
 
     public void display(int f) {
         force = f;
+        System.out.println("dyna:");
+        System.out.println(force);
         th = new Thread(this);
         th.start();
     }
