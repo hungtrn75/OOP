@@ -69,7 +69,7 @@ public class Wheel extends JPanel {
     //assume angle ~ force
     public double angleCalculate(double force) {
         double angle = force * 5;
-        if (angle>45) angle=45;
+        if (angle>50) angle=50;
         System.out.println("angle");
         System.out.println(angle);
         return angle;
